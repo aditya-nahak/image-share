@@ -1,0 +1,107 @@
+<template name="bigImage">
+  <div class="container">
+    <h3>User: {{getUser createdBy}}</h3>
+    <h4>Description: {{img_alt}}</h4>
+      <a href="/images">
+        <img src="{{img_src}}" alt="{{img_alt}}" class="single-image">
+      </a>
+      
+        
+      
+  </div>
+</template>
+
+<template name="welcome">
+  <div class="container">
+      <div class="jumbotron">
+          <h1>Welcome to Image-Share {{username}}</h1>
+          <a href="/images" class="btn btn-outline-dark">Continue</a>
+      </div>
+  </div>
+</template>
+
+<template name="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+     {{> loginButtons}}
+    </div>
+  </nav>
+  {{>image_add_form}}
+  </template>
+
+
+  <template name="image_add_form">
+
+    <div class="modal fade" id="image_add_form">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title">
+            </div>
+          </div>
+          <div class="modal-body">
+            <form class="js-add-image">
+              <div class="form-group">
+                <label for="img_src">Image URL:</label>
+                <input type="text" class="form-control" id="img_src" placeholder="url" name="img_src"/>
+            </div>
+            <div class="form-group">
+             <label for="img_alt">Image description:</label>
+              <textarea class="form-control" id="img_alt" placeholder="Describe the image here" name="img_alt"></textarea>
+            </div>
+              <button class="btn btn-success">save</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-warning" data-dismiss="modal">cancel</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+
+
+<template name="images">
+
+  <div class="container">
+      {{#if currentUser}}
+      <button class="btn btn-success js-show-image-form">Add Image</button>
+      {{/if}}
+
+      {{#if filtering}}
+          <h2>Showing {{filterUser}}'s Images</h2><a href="#" class="js-remove-filter">Remove</a>
+      {{/if}}
+      <hr>
+      <div class="row">
+          {{#each images}}
+          <div class="col-md-3 col-xs-6" id={{_id}}>
+              <div class="thumbnail border">
+                <a href="/bigImage/{{_id}}">
+                  <img  class="js-image img_custom" 
+                          src="{{img_src}}"   
+                          alt="{{img_alt}}">
+                </a>
+                  
+
+                  <div class="caption">
+
+                    <p>Description:{{img_alt}}</p>
+
+                      <h4>Rating:{{rating}}</h4>
+
+                      <p>{{> starsRating class="js-image-rating" mutable=true data_id=_id}}</p>
+
+                      <p>User <a href="#" class="js-img-filter">{{getUser createdBy}}</a></p>
+
+
+                      <button class="js-del btn btn-warning">Delete</button>
+
+                  </div>
+                  </div>
+          </div>  
+          {{/each}}
+      </div>
+
+</div>
+</template>

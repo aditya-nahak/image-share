@@ -1,0 +1,25 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.border{
+  border: solid black 5px;
+}
+
+.thumbnail{
+  min-height: 400px;
+  max-height: 400px;
+}
+
+.img_custom{
+  max-height: 200px;
+}
+
+body{
+  padding-top: 50px;
+}
+
+.single-image{
+  max-width: 100%;
+}
